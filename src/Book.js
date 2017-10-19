@@ -19,6 +19,7 @@ class Book extends Component{
     render(){
         const { book } = this.props
         const { shelf } = this.state
+        console.log(JSON.stringify(book))
         return(
             <div className="book">
                 <div className="book-top">
