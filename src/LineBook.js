@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Book from './Book'
-import escapeRegExp from 'escape-string-regexp'
 
 class LineBook extends Component{
 
@@ -9,8 +8,7 @@ class LineBook extends Component{
     }
 
     filterBooksByShelf(books, code){
-        const match = new RegExp(escapeRegExp(code), 'i')
-        this.setState({ showingBooksByShelf: books.filter((book) => match.test(book.shelf === code)) })
+        this.setState({ showingBooksByShelf: books.filter((book) => book.shelf === code) })
      }
 
      componentWillMount(){

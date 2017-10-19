@@ -25,13 +25,11 @@ class LineBooks extends Component{
             </div>
             <div className="list-books-content">
               <div>
-                <ol>
                   {booksShelfTitles.map((shelf) => (
-                    <li key={ shelf.code }>
+                    <div key={ shelf.code }>
                       <LineBook shelf={ shelf } books={ books }/>
-                    </li>
+                    </div>
                   ))}
-                </ol>
               </div>
             </div>
             <div className="open-search">
