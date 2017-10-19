@@ -27,7 +27,7 @@ class LineBooks extends Component{
               <div>
                   {booksShelfTitles.map((shelf) => (
                     <div key={ shelf.code }>
-                      <LineBook shelf={ shelf } books={ books }/>
+                      <LineBook shelf={ shelf } books={ books.filter((book) => book.shelf === shelf.code) }/>
                     </div>
                   ))}
               </div>
