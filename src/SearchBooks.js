@@ -2,36 +2,38 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import './App.css'
 import Book from './Book'
-import escapeRegExp from 'escape-string-regexp'
+import * as BooksAPI from './BooksAPI'
 
 class SearchBooks extends Component{
 
   constructor(props){
     super(props)
     this.state = {
-      query: ''
+      query: '',
+      books: [],
     }
     this.updateBook = this.updateBook.bind(this)
   }
 
+
+
   updateQuery = (query) => {
     this.setState({ query: query })
+    BooksAPI.search(query, 1000).then(books => {
+        this.setState({books})
+    })
   }
 
   updateBook(book, shelf){
     this.props.updateBook(book, shelf)
+    this.props.history.push('/')
   }
 
   render(){
-    const { books } = this.props
-    const { query } = this.state
-    let showingBooks=[]
-    if(query){
-      const match = new RegExp(escapeRegExp(query), 'i')
-      showingBooks = books.filter((book) => match.test(book.title))
-    } else {
-      showingBooks = books
-    }
+    const { query, books } = this.state
+    let showingBooks=[];
+
+
     return(
       <div className="search-books">
         <div className="search-books-bar">
@@ -45,9 +47,9 @@ class SearchBooks extends Component{
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {showingBooks.map((book) =>(
+            {books.map((book) =>(
             <li key={book.id}>
-              <Book book={ book } updateBook={this.updateBook}/>
+              <Book book={ this.props.books.find(b => b.id === book.id) || book } updateBook={this.updateBook} />
             </li>
             ))}
           </ol>

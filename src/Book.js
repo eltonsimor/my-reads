@@ -8,18 +8,23 @@ class Book extends Component{
     }
 
     state = {
-        shelf: this.props.book.shelf
+        shelf:'none'
+    }
+    componentDidMount() {
+        if(this.props.book.shelf){
+            this.setState({shelf: this.props.book.shelf});
+        }
+
+
     }
 
     updateBook(book, shelf) {
         this.props.updateBook(book, shelf)
-        this.setState({ shelf })
     }
 
     render(){
         const { book } = this.props
         const { shelf } = this.state
-        console.log(JSON.stringify(book))
         return(
             <div className="book">
                 <div className="book-top">
