@@ -10,15 +10,14 @@ class Book extends Component{
     state = {
         shelf:'none'
     }
+
     componentDidMount() {
         if(this.props.book.shelf){
             this.setState({shelf: this.props.book.shelf});
         }
-
-
     }
 
-    updateBook(book, shelf) {
+    updateBook = (book, shelf) =>{
         this.props.updateBook(book, shelf)
     }
 

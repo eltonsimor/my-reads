@@ -27,9 +27,8 @@ class SearchBooks extends Component{
 
   }
 
-  updateBook(book, shelf){
+  updateBook = (book, shelf) =>{
     this.props.updateBook(book, shelf)
-    this.props.history.push('/')
   }
 
   render(){
