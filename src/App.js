@@ -64,7 +64,7 @@ class BooksApp extends React.Component {
               <LineBooks 
                 books={ this.state.books }
                 shelfTitles={ shelfTitles }
-                updateBook={ (book, shelf) => this.updateBook(book, shelf).bind(this) }
+                updateBook={ (book, shelf) => this.updateBook(book, shelf) }
               />
             )} />
           </div>
