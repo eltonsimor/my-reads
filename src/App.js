@@ -12,8 +12,7 @@ class BooksApp extends React.Component {
     super(props);
     this.state = {
       books: [],
-      loading: false,
-      shelfTitles: []
+      loading: false
     }
   }
 
