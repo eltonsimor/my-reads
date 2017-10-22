@@ -1,0 +1,30 @@
+.header-text-center {
+    text-align: center;
+    padding-top: 5px;
+	padding-left: 10px;
+	padding-bottom: 5px;
+}
+
+.image-book-detail-center {
+    display: block;
+    margin-left: 10px;
+    
+}
+
+p {
+    font-family: Arial;
+    font-size: 12px;
+	width: 940px;
+	margin-right: auto;
+    margin-left: 10px;
+    text-align: justify;
+}
+
+a {
+    font-family: Arial;
+    margin-left: 10px;
+}
+
+table {
+    margin: 0 auto
+}

@@ -3,6 +3,7 @@ import * as BooksAPI from './BooksAPI'
 import './App.css'
 import SearchBooks from './SearchBooks'
 import LineBooks from './LineBooks'
+import BookDetail from './BookDetail'
 import { Route } from 'react-router-dom'
 import Loader from 'halogen/PulseLoader'
 
@@ -65,6 +66,7 @@ class BooksApp extends React.Component {
                 updateBook={ (book, shelf) => this.updateBook(book, shelf) }
               />
             )} />
+            <Route path="/books/:id" component={ BookDetail } />
           </div>
         )}
       </div>
