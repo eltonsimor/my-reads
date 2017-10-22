@@ -8,11 +8,14 @@ import Loader from 'halogen/PulseLoader'
 
 class BooksApp extends React.Component {
   
-
-  state = {
-    showSearchPage: false,
-    books: [],
-    loading: false
+  constructor(props){
+    super(props);
+    this.state = {
+      showSearchPage: false,
+      books: [],
+      loading: false,
+      shelfTitles: []
+    }
   }
 
   getBooks = () => {
@@ -22,11 +25,24 @@ class BooksApp extends React.Component {
   }
 
   componentWillMount(){
-    this.setState({loading:true})
+    this.setState({ loading:true })
+  }
+
+  componentDidMount(){
+    this.loadingShelfTitles()
     this.getBooks()
   }
 
-  updateBook = (book, shelf) =>{
+  loadingShelfTitles = () => {
+      let shelfTitles = [
+        { title: 'Currently Reading', code: 'currentlyReading' },
+        { title: 'Want to Read', code: 'wantToRead' },
+        { title: 'Read', code: 'read' }
+      ]
+      this.setState({ shelfTitles })
+  }
+
+  updateBook(book, shelf) {
     this.setState({loading:true})
     BooksAPI.update(book, shelf).then(() => {
       this.getBooks()
@@ -42,22 +58,22 @@ class BooksApp extends React.Component {
              color="#26A65B" size="16px" margin="4px" 
           />
         ) : (
-          <div>
+          <div>x
             <Route path="/search" render={({ history })=> (
               <SearchBooks books={ this.state.books } updateBook={ (book, shelf) => {
                 this.updateBook(book, shelf) 
                 history.push('/')
               }}/>
             )} />
-            <Route exact path="/" render={() => (
-              <LineBooks books={ this.state.books } updateBook={ this.updateBook } />
+            <Route exact path="/" render={({ history }) => (
+              <LineBooks 
+                books={ this.state.books }
+                shelfTitles={ this.state.shelfTitles }
+                updateBook={ this.updateBook }
+              />
             )} />
           </div>
         )}
-          
-        
-        
-        
       </div>
     )
   }
