@@ -12,7 +12,6 @@ class SearchBooks extends Component{
   }
 
   search = (val) => {
-
     if(val){
       BooksAPI.search(val, 1000).then(books => {
         if(books.error){
@@ -23,15 +22,10 @@ class SearchBooks extends Component{
     } else {
       this.setState({books:[]})
     }
-
   }
 
   updateBook = (book, shelf) =>{
     this.props.updateBook(book, shelf)
-  }
-
-  handler(){
-    console.log('passei')
   }
 
   render(){
@@ -42,12 +36,11 @@ class SearchBooks extends Component{
         <div className="search-books-bar">
           <Link className="close-search" to="/">Close</Link>
           <div className="search-books-input-wrapper">
-          <Debounce time="400" handler="onChange">
-            <input type="text" 
-                   placeholder="Search by title or author"
-                   onChange={(e) => this.search(e.target.value)}/>
+            <Debounce time="200" handler="onChange">
+              <input type="text" 
+                    placeholder="Search by title or author"
+                    onChange={(e) => this.search(e.target.value)}/>
             </Debounce>
-            
           </div>
         </div>
         <div className="search-books-results">

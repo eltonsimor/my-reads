@@ -29,20 +29,10 @@ class BooksApp extends React.Component {
   }
 
   componentDidMount(){
-    this.loadingShelfTitles()
     this.getBooks()
   }
 
-  loadingShelfTitles = () => {
-      let shelfTitles = [
-        { title: 'Currently Reading', code: 'currentlyReading' },
-        { title: 'Want to Read', code: 'wantToRead' },
-        { title: 'Read', code: 'read' }
-      ]
-      this.setState({ shelfTitles })
-  }
-
-  updateBook(book, shelf) {
+  updateBook = (book, shelf) => {
     this.setState({loading:true})
     BooksAPI.update(book, shelf).then(() => {
       this.getBooks()
@@ -50,9 +40,14 @@ class BooksApp extends React.Component {
   }
 
   render() {
+    const shelfTitles = [
+      { title: 'Currently Reading', code: 'currentlyReading' },
+      { title: 'Want to Read', code: 'wantToRead' },
+      { title: 'Read', code: 'read' }
+    ]
+
     return (
       <div className="app">
-
         {(this.state.loading) ? (
           <Loader
              color="#26A65B" size="16px" margin="4px" 
@@ -68,8 +63,8 @@ class BooksApp extends React.Component {
             <Route exact path="/" render={({ history }) => (
               <LineBooks 
                 books={ this.state.books }
-                shelfTitles={ this.state.shelfTitles }
-                updateBook={ this.updateBook }
+                shelfTitles={ shelfTitles }
+                updateBook={ (book, shelf) => this.updateBook(book, shelf).bind(this) }
               />
             )} />
           </div>
