@@ -53,7 +53,7 @@ class BooksApp extends React.Component {
              color="#26A65B" size="16px" margin="4px" 
           />
         ) : (
-          <div>x
+          <div>
             <Route path="/search" render={({ history })=> (
               <SearchBooks books={ this.state.books } updateBook={ (book, shelf) => {
                 this.updateBook(book, shelf) 
